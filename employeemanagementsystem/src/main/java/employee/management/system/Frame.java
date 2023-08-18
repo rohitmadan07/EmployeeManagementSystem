@@ -16,6 +16,7 @@ public class Frame extends JFrame{
         getContentPane().setBackground(Color.WHITE);
         setLayout(null); //removes default layout
 
+        //Create JLabel to add to the frame
         JLabel title = new JLabel("EMPLOYEE MANAGEMENT SYSTEM");
         title.setBounds(80, 30, 1200, 60);
         title.setFont(new Font("Times New Roman", Font.BOLD,60));
