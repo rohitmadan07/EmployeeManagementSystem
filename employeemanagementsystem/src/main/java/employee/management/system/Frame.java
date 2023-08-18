@@ -3,13 +3,18 @@ package employee.management.system;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class Frame extends JFrame{
+public class Frame extends JFrame implements ActionListener{
+
+    //ActionListener -> interface which has an unimplemented abstract method then have to
+    //override that method
 
     Frame(){
         
@@ -34,7 +39,10 @@ public class Frame extends JFrame{
         button.setBounds(400, 400, 300, 70);
         button.setBackground(Color.WHITE);
         button.setForeground(Color.BLACK);
-        image.add(button);
+
+        // current instance of the class will handle the button's click event.
+        button.addActionListener(this); 
+        image.add(button); //add relative to image
 
         setSize(1170,650); //new Frame
         setLocation(200, 50); //(left,top)
@@ -56,6 +64,11 @@ public class Frame extends JFrame{
                 
             }
         }
+    }
+
+    public void actionPerformed(ActionEvent e){
+        setVisible(false); //close this frame
+        new LoginFrame();
     }
     
     public static void main(String[] args) {
