@@ -59,8 +59,10 @@ public class Home extends JFrame implements ActionListener{
         //Action Event will give information about which button was clicked
         if (ae.getSource() == addButton) {
             setVisible(false);
+            new AddEmployee();
         } else if (ae.getSource() == viewButton) {
             setVisible(false);
+            new ViewEmployees();
         } else if (ae.getSource() == updateButton) {
             setVisible(false);
         } else {

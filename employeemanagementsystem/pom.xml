@@ -21,6 +21,13 @@
   <dependencies>
 
     <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.33</version>
+    </dependency>
+
+
+    <dependency>
       <groupId>com.toedter</groupId>
       <artifactId>jcalendar</artifactId>
       <version>1.4</version>
@@ -31,6 +38,14 @@
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>DbUtils</groupId>
+      <artifactId>common-dbutils</artifactId>
+      <version>1.8</version>
+      <scope>system</scope>
+      <systemPath>C:\Users\rohit\EmployeeManagementSystem\employeemanagementsystem\src\resources\rs2xml.jar</systemPath>
     </dependency>
   </dependencies>
 

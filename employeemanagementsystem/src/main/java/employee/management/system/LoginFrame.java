@@ -2,14 +2,20 @@ package employee.management.system;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class LoginFrame extends JFrame {
+public class LoginFrame extends JFrame implements ActionListener{
+
+    JTextField usernameTextField, passwordTextField;
 
     LoginFrame(){
         getContentPane().setBackground(Color.WHITE);
@@ -19,7 +25,7 @@ public class LoginFrame extends JFrame {
         username.setBounds(40, 20, 100, 30);
         add(username);
 
-        JTextField usernameTextField = new JTextField();
+        usernameTextField = new JTextField();
         usernameTextField.setBounds(150,20,150,30); //should start from 40 + 100 (length of label)
         add(usernameTextField);
 
@@ -27,7 +33,7 @@ public class LoginFrame extends JFrame {
         password.setBounds(40, 70, 100, 30);
         add(password);
 
-        JTextField passwordTextField = new JTextField();
+        passwordTextField = new JTextField();
         passwordTextField.setBounds(150,70,150,30); //should start from 40 + 100 (length of label)
         add(passwordTextField);
 
@@ -35,6 +41,7 @@ public class LoginFrame extends JFrame {
         loginButton.setBounds(150, 140, 150, 30);
         loginButton.setBackground(Color.BLACK);
         loginButton.setForeground(Color.WHITE);
+        loginButton.addActionListener(this);
         add(loginButton);
 
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("imgs/second.jpg"));
@@ -47,6 +54,27 @@ public class LoginFrame extends JFrame {
         setSize(600, 300);
         setLocation(450, 200);
         setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+        try {
+            String username = usernameTextField.getText();  
+            String password = passwordTextField.getText();
+            
+            JdbcConnection connection = new JdbcConnection();
+            String query = "select * from login where username = '"+username+"' and password = '"+password+"'";
+            
+            ResultSet rs = connection.statement.executeQuery(query);
+            if (rs.next()) {
+                setVisible(false);
+                new Home();
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid username or password");
+                setVisible(false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public static void main(String[] args) {
         new LoginFrame();
